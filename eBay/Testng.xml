@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="Selenium Test" parallel="methods" thread-count="1">
+	<groups>
+		<run>
+			<include name="WatchTest" />
+		</run>
+	</groups>
+
+	<test name="Ebay Watch test">
+		<classes>
+		<class name="com.ebay.selenium.automation.tests.WatchTest"></class>
+		</classes>
+	</test>
+
+</suite>
