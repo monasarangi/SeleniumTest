@@ -28,4 +28,17 @@
 5.    Once TestRun completes it will create test report under test-output folder . To check the report open                            emailable-report.html or  index.html Open With -> Web Browser    
 
    ![](TestReport.png)
-
+   
+   #### Little details about the Project
+   
+   Starting on the ebay category page for Rolex watches (https://www.ebay.com/b/Rolex-Wristwatches/31387/bn_2989578), please     find the five watches with the most views in the last hour. The number of views can be found on the item page
+   
+   ![](eBayWatchView.png) 
+    
+  #### Project Implementation 
+     
+    We have 2 waays to do the project 
+    1.  Java Project 
+    2.  Maven Project
+ This project is developed as a JavaProject and Used Page Page Object Model Where Element identifiers are declared with in the Page class .
+ 
