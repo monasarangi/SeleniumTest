@@ -17,7 +17,6 @@ public class BrowsePage extends LoadableComponent<BrowsePage> {
 	public List<WebElement> allItemAnchorElements;
 	public static final String URL = "https://www.ebay.com/b/Rolex-Wristwatches/31387/bn_2989578";
 
-	// Default Constructor
 	public BrowsePage(WebDriver driver) {
 		this.driver = driver;
 
@@ -25,17 +24,14 @@ public class BrowsePage extends LoadableComponent<BrowsePage> {
 
 	public WebElement getEbayLogo() {
 		return driver.findElement(By.id("gh-la")); //Find ebay logo identifier
-		//return ebayLogo;
 	}
 
 	public WebElement getNextPagination() {
 		return driver.findElement(By.cssSelector(".ebayui-pagination > a[rel='next']")); //Find pagination > arrow
-//		return nextPagination;
 	}
 
 	public List<WebElement> getAllItemAnchorElements() {
 		return driver.findElements(By.cssSelector("div.container a.s-item__link")); //Find All item links
-//		return allItemAnchorElements;
 	}
 
 	@Override
