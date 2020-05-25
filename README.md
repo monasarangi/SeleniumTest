@@ -1,7 +1,10 @@
 ## Selenium Webdriver Test for eBay Watch View
 
-##### SetUp:
+## SetUp:
 
+#### PreStep:  Download selenium Java Language from https://www.selenium.dev/downloads/
+  
+#### Follow the below steps to Write & Run Tests
 
 1.  Download ChromeDriver from and make sure your chromw version is compatible with teh chromedriver
     https://chromedriver.chromium.org/downloads
@@ -11,10 +14,10 @@
    
    ![](TestNG.png)
 
-4.  Run Tests 2 ways
-    - Rightclick on Test file(WatchTest.java) and RunAs TestNG
+4.  Run Tests in 2 ways
+    - Rightclick on Test file(WatchTest.java) and RunAs TestNG  
     - TestNG.xml->RightClick->RunAs->Run Configuration -> Select the Class(Browse to the class) -> Apply -> Run
-       Also you can entire package/method/suite etc.
+       Also you can run the  entire package/method/suite etc by selecting and browing to the respective selection
     
     ![](RunTestClass.png)
        
@@ -22,7 +25,7 @@
        
      ![](RunTestNG.png)
     
-5.    Once TestRun completes it will create test report under test-output folder . To check the report open      
+5.    Once TestRun completes it will create test report under test-output folder . To check the report open                            emailable-report.html or  index.html Open With -> Web Browser    
 
    ![](TestReport.png)
 
