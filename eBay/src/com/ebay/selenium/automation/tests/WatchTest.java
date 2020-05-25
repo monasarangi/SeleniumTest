@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -30,8 +29,7 @@ public class WatchTest {
 
 	public BrowsePage browsePage;
 	public static WebDriver driver;
-	public WebDriverWait webDriverWait;  
-	  
+	public WebDriverWait webDriverWait;
 
 	Map<String, Integer> map = new HashMap<String, Integer>();
 
@@ -39,12 +37,11 @@ public class WatchTest {
 
 	@BeforeClass
 	public void setUp() {
-		//Set chromedriver.exe path 
+		// Set chromedriver.exe path
 		System.setProperty("webdriver.chrome.driver", "/Users/m0s04ai/Documents/chromedriver");
-		//Initialize chrome driver instance
 		driver = new ChromeDriver();
 		browsePage = new BrowsePage(driver);
-		webDriverWait= new WebDriverWait(driver, 15);
+		webDriverWait = new WebDriverWait(driver, 15);
 	}
 
 	/**
@@ -78,50 +75,35 @@ public class WatchTest {
 			webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("gh-la")));
 			driver.manage().window().maximize();
 
-			// Check teh valuee of pagination arrow
 			String paginationDisabled = browsePage.getNextPagination().getAttribute("aria-disabled");
 
-			// Check if Paginations > enabled or not
 			isNextPageEnabled = paginationDisabled == null || !paginationDisabled.equals("true");
-
-			// Get List of Anchor links for each item from browse page item
-			// section
 			List<WebElement> allItemAnchorElements = browsePage.getAllItemAnchorElements();
 			int size = allItemAnchorElements.size();
-			// Check if totalItem+size is exceeding teh MAX_ITEM_COUNT then get
-			// link of remaining items to reach MAX_ITEM_COUNT
 			if ((totalItems + size) > MAX_ITEM_COUNT) {
 				allItemAnchorElements = allItemAnchorElements.subList(0, MAX_ITEM_COUNT - totalItems);
 			}
 
 			totalItems += allItemAnchorElements.size();
 			System.out.println("");
-			// Get All item urls
 			List<String> itemUrls = getItemUrls(allItemAnchorElements);
 
-			// Loop through each of the item link and open in browser
 			for (String viewItemUrl : itemUrls) {
-				// Open item link in browser
 				driver.get(viewItemUrl);
 				// Check the URL
-				System.out.println("URL IS ****"+driver.getCurrentUrl());
 				Assert.assertTrue(driver.getCurrentUrl().contains("ebay.com/itm")
 						|| driver.getCurrentUrl().contains("ebay.com/p/")
 						|| driver.getCurrentUrl().contains("ebay.com/c/"));
 
 				try {
 					WebElement viewPerHourFromPage = null;
-					// Check if the page is VI page
 					if (driver.getCurrentUrl().contains("ebay.com/itm")) {
-						// Get view per hour element for VI paae
 						viewPerHourFromPage = driver.findElement(By.id("vi_notification_new"));
-						// Check if the page is Product page
 					} else if (driver.getCurrentUrl().contains("ebay.com/p/")) {
-						// Get view per hour element for Product Page
 						viewPerHourFromPage = driver.findElement(By.className("banner-status"));
 					}
 
-					if (viewPerHourFromPage != null) { //If item/product has view per hour
+					if (viewPerHourFromPage != null) {
 						addViewsToMap(viewPerHourFromPage, viewItemUrl);
 					}
 
@@ -132,7 +114,7 @@ public class WatchTest {
 
 			pagination += 1;
 		} while (totalItems < MAX_ITEM_COUNT && isNextPageEnabled);
-        Reporter.log("Total number of items checked ---- " +totalItems);
+		Reporter.log("Total number of items checked ---- " + totalItems);
 		Reporter.log("Items with views ----" + map.size(), true);
 		Set<String> set = map.keySet();
 		for (String element : set) {
@@ -146,7 +128,7 @@ public class WatchTest {
 	 * print top 5 values
 	 */
 	@Test(groups = "WatchTest", dependsOnMethods = "printUrlWIthViews", priority = 1, alwaysRun = true)
-	public void printTop5Watches() {
+	public void printTopFiveWatches() {
 		Map<String, Integer> sortedmap = sortMapByValue();
 		Set<String> set = sortedmap.keySet();
 		int count = 0;
@@ -172,7 +154,6 @@ public class WatchTest {
 			itemUrls.add(url.getAttribute("href"));
 
 		}
-
 		return itemUrls;
 	}
 
@@ -188,11 +169,12 @@ public class WatchTest {
 		Integer noOfView = null;
 
 		if (viewPerHourPage.isDisplayed()) {
-			
-			//Get text from view per hour element
+
+			// Get text from view per hour element
 			viewPerHourText = viewPerHourPage.getText();
-			System.out.println(viewItemUrl+"----"+viewPerHourText);
-			//Ignore if teh text is Last one else extract the integer value from it
+			System.out.println(viewItemUrl + "----" + viewPerHourText);
+			// Ignore if teh text is Last one else extract the integer value
+			// from it
 			if (!viewPerHourText.equalsIgnoreCase("Last one!")) {
 				String viewCount = viewPerHourText.split(" ")[0];
 				noOfView = Integer.parseInt(viewCount);
