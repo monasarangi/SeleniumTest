@@ -65,7 +65,7 @@ public class WatchTest {
 	 * HashMap<String, Integer>();
 	 */
 	@Test(groups = "WatchTest", priority = 1, alwaysRun = true)
-	public void printUrlWIthViews() {
+	public void printUrlWithViews() {
 		int pagination = 1;
 		int totalItems = 0;
 		boolean isNextPageEnabled = true;
