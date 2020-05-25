@@ -10,4 +10,7 @@
     https://chromedriver.chromium.org/downloads
 2. SetUp TestNG  Eclipse plug-in
    https://www.seleniumeasy.com/testng-tutorials/how-to-install-testng-step-by-step
-3.  
+3. Once TestNg is installed Rightclick->ProjectBuildPath->Add Library->TestNG and finish  
+   ![](TestNG.png)
+4. 
+   ![](TestReport.png)
