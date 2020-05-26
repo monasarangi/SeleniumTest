@@ -6,7 +6,7 @@
   
 #### Follow the below steps to Write & Run Tests
 
-1.  Download ChromeDriver from and make sure your chrome version is compatible with the chromedriver
+1.  Download ChromeDriver from below link and make sure your chrome version is compatible with the chromedriver
     https://chromedriver.chromium.org/downloads
 2. SetUp TestNG  Eclipse plug-in ro run tests
    https://www.seleniumeasy.com/testng-tutorials/how-to-install-testng-step-by-step
